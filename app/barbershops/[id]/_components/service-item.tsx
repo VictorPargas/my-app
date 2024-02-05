@@ -40,13 +40,13 @@ const ServiceItem = ({ service, barbershop, isAuthenticates }: ServiceItemProps)
         }
 
         const refreshAvailabreHours = async () => {
-            const _dayBookings = await getDayBookings(date)
+            const _dayBookings = await getDayBookings(barbershop.id,date)
 
             setDayBookings(_dayBookings);
         };
 
             refreshAvailabreHours();
-        }, [date]);
+        }, [date,barbershop.id]);
 
 
     const handleDateClick = (date: Date | undefined) => {
