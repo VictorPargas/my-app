@@ -1,11 +1,10 @@
 import { getServerSession } from "next-auth";
 import Header from "../_components/header";
-
-import { signIn } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { db } from "../_lib/prisma";
 import BookingItem from "../_components/booking-item";
 import { authOptions } from "../_lib/auth";
+import { Key } from "react";
 
 
 const BookingsPage =  async () => {
@@ -58,7 +57,7 @@ const BookingsPage =  async () => {
                 <h2 className="text-gray-400 uppercase font-bold text-sm mb-3">Confirmados</h2>
 
                 <div className="flex flex-col gap-3">
-            {confirmedBooking.map((booking) => (
+            {confirmedBooking.map((booking: { id: Key | null | undefined; }) => (
                     <BookingItem key={booking.id} booking={booking} />
                 ))}
                 </div>
@@ -71,7 +70,7 @@ const BookingsPage =  async () => {
                              <h2 className="text-gray-400 uppercase font-bold text-sm mt-6 mb-3">Finalizados</h2>
 
                              <div className="flex flex-col gap-3">
-            {fisinishedBooking.map((booking) => (
+            {fisinishedBooking.map((booking: { id: Key | null | undefined; }) => (
                     <BookingItem key={booking.id} booking={booking} />
                 ))}
                 </div>
