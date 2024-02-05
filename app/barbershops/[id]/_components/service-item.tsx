@@ -11,7 +11,7 @@ import Image from "next/image";
 import React, { useEffect, useMemo, useState } from "react";
 import { generateDayTimeList } from "./_helpers/hours";
 import { time } from "console";
-import { format, formatDate, setHours, setMinutes } from "date-fns";
+import { addDays, format, formatDate, setHours, setMinutes } from "date-fns";
 import { saveBooking } from "../_actions/save-booking";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
@@ -174,7 +174,7 @@ const ServiceItem = ({ service, barbershop, isAuthenticates }: ServiceItemProps)
                                       selected={date}
                                        onSelect={handleDateClick}
                                         locale={ptBR}
-                                        fromDate={new Date()}
+                                        fromDate={addDays(new Date(), 1)}
                                         styles={{
                                             head_cell:{
                                                 width: "100%",
