@@ -7,6 +7,7 @@ import ServiceItem from "./_components/service-item";
 import { Key } from "react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/_lib/auth";
+import { Service } from "@prisma/client";
 
 interface BarbershopDetailPageProps {
     params: {
@@ -40,10 +41,15 @@ const BarbershopDetailPage = async ({params}: BarbershopDetailPageProps) => {
         <BarbershopInfo barbershop={barbershop} />
 
         <div className="px-5 flex flex-col gap-3 py-6">
-        {barbershop.services.map((service: { id: Key | null | undefined; }) => (
-            <ServiceItem key={service.id} barbershop={barbershop} service={service} isAuthenticates={!!session?.user} />
-        ))}
-        </div>
+            {barbershop.services.map((service: Service) => (
+                <ServiceItem 
+                key={service.id}
+                barbershop={barbershop}
+                service={service}
+                isAuthenticates={!!session?.user}
+                />
+            ))}
+    </div>
     </div>
    );
 };
