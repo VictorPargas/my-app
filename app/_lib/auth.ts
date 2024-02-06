@@ -14,6 +14,8 @@ export const authOptions: AuthOptions = { adapter: PrismaAdapter(db) as Adapter,
     ],
     callbacks:{
         async session({ session, user}) {
+
+            
             session.user = { ...session.user, id: user.id } as {
                 id: string;
                 name: string;

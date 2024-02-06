@@ -29,7 +29,7 @@ const ServiceItem = ({ service, barbershop, isAuthenticates }: ServiceItemProps)
     const router = useRouter();
     const {data} = useSession();
     const [date, setDate] = useState<Date | undefined>(undefined);
-    const [hour, setHour] = useState<string | undefined>();
+    const [hour, setHour] = useState<string | undefined>(undefined);
     const [submitIsLoading, setSubmitIsLoading] = useState(false);
     const [sheetIsOpen, setSheetIsOpen] = useState(false);
     const [dayBookings, setDayBookings] = useState<Booking[]>([]);
@@ -69,12 +69,12 @@ const ServiceItem = ({ service, barbershop, isAuthenticates }: ServiceItemProps)
 
         try {
             if (!hour || !date || !data?.user) {
-                return
+                return;
             }
 
 
-            const dateHour = Number(hour.split(':')[0])
-            const dateMinutes = Number(hour.split(':')[1])
+            const dateHour = Number(hour.split(':')[0]);
+            const dateMinutes = Number(hour.split(':')[1]);
 
 
             const newDate = setMinutes(setHours(date, dateHour), dateMinutes);
@@ -101,7 +101,7 @@ const ServiceItem = ({ service, barbershop, isAuthenticates }: ServiceItemProps)
         } catch (error) {
             console.log(error);
         } finally {
-            setSubmitIsLoading(false)
+            setSubmitIsLoading(false);
         }
     }
 
@@ -141,7 +141,7 @@ const ServiceItem = ({ service, barbershop, isAuthenticates }: ServiceItemProps)
                     <div className="relative min-h-[110px] min-w-[110px] max-h-[110px] max-w[110px]">
                     <Image 
                     className="rounded-lg"
-                     src={service.imageUrl}
+                     src={service.imageUrl ?? ''}
                       fill 
                       style={{objectFit: "contain"}}
                        alt={service.name}
