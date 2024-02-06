@@ -16,8 +16,8 @@ export default async function Home() {
     db.barbershop.findMany({}),
     db.barbershop.findMany({
       orderBy:{
-        id: 'asc'
-      }
+        id: 'asc',
+      },
     }),
     session?.user ? db.booking.findMany({
       where: {
